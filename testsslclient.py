@@ -1,6 +1,9 @@
 #!/usr/bin/env python2
 import ssl, socket, time, sys
 
+# Templated socket-based client and SSL client
+
+
 def client(host, port):
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -14,23 +17,11 @@ def client(host, port):
         # print(str(X))
         pass
 
+
 def sslclient(host, port):
     try:
         from os.path import join
-        """
-        CERT = ssl.get_server_certificate((host, int(port)))
-        # print(CERT)
-        CN = "SSLS"
-        cert_dir = "."
-        CERT_FILE = "%s.crt" % CN 
-        """
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        """
-        C_F = join(cert_dir, CERT_FILE)
-        with open(C_F, 'wb') as f:
-            f.write(CERT)
-            f.close()
-        """
         context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
         context.options |= ssl.OP_NO_TLSv1 | ssl.OP_NO_TLSv1_1 
         sslsock = context.wrap_socket(sock, server_hostname=host)
@@ -45,7 +36,6 @@ def sslclient(host, port):
     except Exception, X:
         print(str(X))
         # pass
-
 
 
 def main():
@@ -64,6 +54,7 @@ def main():
         sys.exit()
     except:
         pass
+
 
 if __name__=="__main__":
     main()
