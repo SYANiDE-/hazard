@@ -1,6 +1,9 @@
 #!/usr/bin/env python2
 import ssl, socket, time, sys
 
+# Templated server-side sockets-based listener and SSL listener
+
+
 def listener(host, port):
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -16,6 +19,7 @@ def listener(host, port):
     except Exception, X:
         # print(str(X))
         pass
+
 
 def ssllistener(host, port, CERT, PEM):
     try:
@@ -80,10 +84,12 @@ def gencert():
 
 
 def cleanup(inp):
+    # get rid of the single-use certificates and PKI
     from os.path import exists
     from os import remove
     if exists(inp):
         remove(inp)
+
 
 def main():
     CERT, PEM, PUBKEY = gencert()
@@ -103,6 +109,7 @@ def main():
         sys.exit()
     except:
         pass
+
 
     
 if __name__=="__main__":
