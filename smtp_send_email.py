@@ -1,7 +1,9 @@
 #!/usr/bin/env python2
 import smtplib
 from email.mime.text import MIMEText
+
 # Just a quick mock-up for sending a simple email.
+# https://docs.python.org/2/library/email-examples.html
 
 
 msg = MIMEText("This is a test of the emergency SMTP notification system.") #body
